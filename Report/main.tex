@@ -1,0 +1,256 @@
+%%%%\documentclass{llncs}
+%%%%\documentclass[12pt,journal,onecolumn,draftclsnofoot,]{IEEEtran}
+%%%\documentclass[preprint,12pt]{elsarticle}
+\documentclass[preprint,review,12pt]{elsarticle}
+  
+
+
+
+\usepackage{amsmath, amssymb} 
+\usepackage{graphicx}
+\usepackage[ruled]{algorithm2e}
+
+
+%%\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+
+\usepackage{color}
+
+\usepackage{multirow}
+\usepackage{booktabs}
+
+
+%%% FOR bold \texttt{}  
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} 
+
+\usepackage{lscape}
+  
+	
+%%%%%% https://tex.stackexchange.com/questions/180954/landscape-table-without-creating-new-page
+\usepackage{hvfloat}
+
+
+
+	
+%%%%% https://tex.stackexchange.com/questions/54069/table-with-text-wrapping	
+\usepackage{array}
+
+
+
+%%%%% https://tex.stackexchange.com/questions/204112/how-to-fully-justify-tabular-columns
+\usepackage{tabularx}
+
+
+%%% https://tex.stackexchange.com/questions/83855/change-line-spacing-inside-the-document 
+\usepackage{setspace}
+
+ 
+      
+
+
+
+%%% ALORS abbreviations
+\include{ALORS-macro}
+
+
+   
+
+   
+
+
+
+
+
+%%%\graphicspath{{../../}}
+%%%%\graphicspath{{E:/ONEDRIVE/______PROPOSALS/TeXRepository/}} %%% OKUL 
+%%%\graphicspath{{C:/Users/Mustafa/Desktop/ONEDRIVE/______PROPOSALS/TeXRepository/}} %%% EV   
+%%%\graphicspath{{C:/Users/mustafa.misir/Desktop/ONEDRIVE/______PROPOSALS/TeXRepository/}} %%% MSI
+
+
+
+ 
+
+%%%\DeclareMathSizes{10}{8}{7}{6}  
+
+
+\def\tinyer{\fontsize{4pt}{4pt}\selectfont}
+
+
+\journal{Information Sciences} 
+
+
+
+\begin{document}
+
+  
+
+\begin{frontmatter}
+
+\title{A Comprehensive Evaluation of Selection Hyper-heuristics on HyFlex with Extended Benchmarks}
+  
+\author{TBA}
+\ead{TBA@dukekunshan.edu.cn}  
+
+\address{
+Duke Kunshan University, Division of Natural and Applied Sciences, 215316 Kunshan, Jiangsu, China \\
+} 
+ 
+%%%\maketitle -- IEEE  
+
+
+\begin{abstract}
+Optimization problems are everywhere in daily life. However, most need help with large search spaces and expensive computational costs. Researchers have developed many Metaheuristics methods, providing high-quality instance-specific solutions while remaining sensitive to parameter settings in different application scenarios. Hyper-heuristics suggests using algorithm components to offer more general and domain-independent solutions. This paper applied one of the state-of-the-art hyper-heuristics algorithms, cross-domain algorithm selection, on the extended Hyflex framework.
+\end{abstract}
+
+
+
+% Note that keywords are not normally used for peerreview papers.
+%%%\begin{IEEEkeywords}
+\begin{keyword}
+Algorithm Selection, Selection Hyper-heuristics, Cross-domain Problem Solver, Generic Instance Features, Single-objective Optimization %%%, Feature Extraction 
+
+\end{keyword}
+ 
+\end{frontmatter}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The challenge of optimization problems occurs in daily life, from optimizing exam time schedules to the travel plan design. Nevertheless, because of the exponential-level search spaces, finding the exact solution requires significant computation costs. The P and NP standards categorize the difficulty of finding the solution. P denotes problems solvable through polynomial complexity algorithms, indicating solutions can be found in polynomial computational complexity. On the other hand, NP refers to problems where solutions can be verified in polynomial time, though the existence of a polynomial-time algorithm to find these solutions remains uncertain. Unfortunately, most optimization problems fall into the NP category, where researchers try to find reasonable solutions instead of the optimal ones, balancing the compromise and the performance. 
+ 
+Due to the impractical nature of exhaustive searches, the heuristics approach dominates the research area. Heuristics optimization refers to the rule of finding solutions without guaranteeing optimality. To attain high-level guidance for solving problems, Metaheuristics is a problem-independent framework that is supposed to solve many problems. Over time, many successful algorithms have been developed, including tabu search, simulated annealing, genetic algorithms, ant colony, and many variations based on them. Those algorithms have a wide range of real-world applications for optimization problems. However, their performance is significantly influenced by the carefully selected parameters, for instance, the list size for tabu search, the population size for the genetic algorithm, and the evaporation rate for the ant colony optimization.
+
+Consequently, Hyper-heuristics \cite{misir2021hyper-heuristics} is established as a problem-independent method to increase the generality, which deals with different problem domains, heuristics sets, and stopping criteria. Compared with metaheuristics, which directly operates on the problem domains, Hyper-heuristics works on the low-level heuristics sets, which are some algorithm components that directly interact with the problems. Initially, the Hyper-heuristics layer consists of the heuristics selection and the move acceptance, also called the Selection Hyper-heuristics. Nevertheless, those methods still exhibit superior performance in specific instances while demonstrating suboptimal results in other scenarios. In other words, there are no universally superior algorithms, motivating the need for combining algorithm selection.
+
+Algorithm selection aims to provide the optimal algorithm in the candidate space for a given instance.  One common strategy could be computing the feature for the given instance and then applying machine learning techniques to output the preferred algorithm. This paper focuses on another type of algorithm, ALORS, inspired by the collaborative filtering algorithm to give recommendations. Moreover, it utilizes the Singular Value Decomposition matrix factorization to construct latent features from the performance, solving the cold-start problem. Combining Hyper-heuristics and algorithm selection, Cross-domain algorithm selection takes different Hyper-heuristics algorithms as candidates and returns per-instance algorithm recommendation.
+
+There are diverse target optimization problems that are extracted as mathematic models. For example, the Nurse rostering and Flow shop for scheduling, Exam timetabling for timetabling, Traveling salesman for routing, and bin packing for packing problems. The corresponding benchmark needs to be set up to evaluate the performance of the heuristics algorithms. Some popular libraries exist that separately provide many problem instances. However, a comprehensive benchmark containing more problems can be more convenient to use and deliver a thorough evaluation. Hyflex, initially built for a hyper-heuristics algorithm competition, has six problem domains with around ten instances for each domain. Since adding more instances could increase the reliability of the existing framework, this study also spent some effort adding more instances. 
+
+The structure of the following section is as follows. Section two provides a detailed background of Hyper-heuristics, algorithm selection, and cross-domain algorithm selection. Section three describes the details of the experiment setting, followed by the results presented in section four. The discussion and future work are listed in section five. 
+
+
+
+  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background}
+\label{sec:lit}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hyper-heuristics}
+
+Hyper-heuristics constructs the domain barrier between the algorithm and the problem domains, increasing the generality of solving the optimization problems. The hyper-heuristics layer communicates with the low-level heuristics without a direction connection to the problem description. More specifically, hyper-heuristics usually experience two stages: selection hyper-heuristics and move acceptance strategies. 
+
+The goal of selection hyper-heuristics is to efficiently generate optimal sequences of low-level heuristics, playing a crucial role in hyper-heuristics algorithms for achieving desired solutions\cite{dokeroglu2023hyper}. Various implementations have been invented so far. The choice function\cite{cowling2001hyperheuristic} evaluates low-level heuristics based on their impact on performance and computational cost, proving effective across diverse application scenarios. Additionally, iterative selection methods can serve as hyper-heuristics algorithms. A Monte Carlo-based hyper-heuristics approach\cite{burke2012monte} integrates selection with a simulated annealing move acceptance strategy, enhancing solutions to examination scheduling problems. Moreover, metaheuristics algorithms can also be utilized for the selection hyper-heuristics as well. Koulinas et al.\cite{koulinas2014particle} propose using particle swarm optimization (PSO) as the selection hyper-heuristics, successfully solving the resource-constrained project scheduling problem (SRCPSP). Lately, Chen et al.\cite{chen2021hyper} suggested an ensemble genetic programming (HH-EGP) with various priority rules for solving SRCPSP problems, resulting in significant performance improvements. Numerous other successful implementations in this domain are worth further research and exploration\cite{chen2021hyper}\cite{rostami2018new}\cite{fang2015estimation}. 
+
+Furthermore, modern machine learning and deep learning techniques contribute to the hyper-heuristics community for subsequent generation development. Considering the definition of the selection hyper-heuristics and move acceptance strategies, gradually learning actions in different situations, linking this process with reinforcement learning is intuitive. Many algorithms successfully implement reinforcement learning in different problem domains. Ozcan et al.\cite{ozcan2012reinforcement} propose combining the reinforcement learning selection method and the great deluge move acceptance strategy, demonstrating its effectiveness in solving the examination timetabling problem. Deep learning is commonly used to extract the hidden patterns within the data. Qin et al.\cite{qin2021novel} implement a deep learning and policy-based reinforcement learning method to characterize the low-level heuristics and solve the high-level selection on large-scale vehicle routing problems. Similarly, Li et al.\cite{li2021deep} construct deep reinforcement learning with an attention mechanism hyper-heuristics system and test the heterogeneous capacitated vehicle routing problem. Under their framework, the problem instance is first passed to an encoder, followed by a vehicle selection decoder and a node selection decoder, called the policy network. They also design a baseline network to compute the reward of vehicles and routes with maximum probability. By updating the parameters in both frameworks, they achieve superior results. Alternatively, Q-learning, a famous type of value-based reinforcement learning, is used to select low-level heuristics in some other scenarios. Lin et al.\cite{lin2022semiconductor} test the Q-learning-based hyper-heuristics mechanism on the semiconductor final testing scheduling problem with proper encoding and decoding schemes. The innovative implementation continues to expand rapidly\cite{li2023generality}\cite{duflo2022framework}\cite{bao2023collaborative}\cite{gao2023ensemble}.
+
+Benchmark setting is crucial in evaluating the performance of hyper-heuristics algorithms. Many hyper-heuristic frameworks exist corresponding to different problem domains. HyFlex\cite{ochoa2012hyflex} is a comprehensive Java software framework that contains six problem domains: Boolean Satisfiability Problem, Flow Shop, Vehicle Routing Problem, Bin Packing, Traveling Salesman Problem, and Personnel Scheduling Problem. It was initially set up for competition purposes but has also been used as a well-known benchmark lately. More frameworks usually focus on fewer types of problem domains but more instances. PSPLIB\cite{sprecher1996psplib} is a popular scheduling problem library. SATzilla\cite{xu2008satzilla} contains a wide range of SAT instances. CVRPLib\cite{uchoa2017new} makes a significant effort to add instances related to the Capacitated Vehicle Routing Problem, spanning from 100 to 1000 customers. Despite the diverse benchmarks constructed for various problems, there remains potential to explore their integration, which could lead to more robust and reliable evaluations. 
+
+Nevertheless, the challenge persists as the performance of hyper-heuristics algorithms tends to vary significantly across different problem instances, making it challenging to identify universally superior algorithms. Additionally, given the computationally expensive nature of these algorithms, there is a growing need to recognize optimal algorithms for specific instances in advance, leading to the discussion about algorithm selection in the next section. 
+
+\subsection{Algorithm Selection}
+Algorithm Selection can be viewed as selecting the best algorithms from the candidate space for the given problem instance.  To find the optimal solution for any instance, utilizing an algorithm selection system is supposed to increase the generality and performance. It becomes especially crucial when the problems are computationally expensive, like most optimization problems.
+
+There are various approaches to implement the algorithm selection as an algorithm. The most intuitive way could be to transform the problem into multi-class classification tasks. In other words, each instance can be classified to a specific algorithm. SATzilla\cite{xu2008satzilla} implements this idea by analyzing the one-to-one relationship between the instance and algorithms. Following the same logic, Hanselle et al.\cite{hanselle2020hybrid} propose a hybrid approach that combines regression and ranking models. This integrated model demonstrates enhanced performance compared to applying either method in isolation. Alternatively, ISAC\cite{kadioglu2010isac} develops an instance-specific algorithm configuration. The instances are initially divided into clusters using the g-Means algorithm, which automatically decides the number of clusters by checking whether the instances within each cluster follow the Gaussian distribution around the center. Next, it uses the local search method to estimate the parameters for each cluster and algorithm pair, successfully predicting performance for new instances. SUNNY\cite{amadini2014sunny} has a similar clustering-based structure. It starts with creating clusters using the K-Nearest Neighbors algorithm and then constructs the sub-portfolio that can solve the largest number of instances within the cluster within the time budget. 
+More recently, more models have been built to enhance previous models. Run2Survive\cite{tornede2020run2survive} emphasizes the skills of handling the censored data. Since the computational budget is usually limited in optimization problems, the experiment generates a large amount of incomplete data representing the unfinished tasks within the budget. Therefore, this model suggests a survival analysis to utilize the censored information and achieve impressive results with ASlib benchmarks. ALORS\cite{misir2022cross} mitigates the same problem by taking advantage of collaborative filtering and matrix completion. Additionally, it can build a feature-to-feature mapping from the performance data through singular value decomposition instead of manually selecting the feature representation for the instances, leading to widespread application across various applications.  
+
+\subsection{Cross Domain Algorithm Selection}
+Following the discussion about hyper-heuristics and algorithm selection, a natural idea would be to combine the two to improve the performance of the single hyper-heuristics. However, it is worth mentioning that traditional algorithm selection relies on instance-specific features, which violates the spirit of the hyper-heuristic and destroys the problem domain barrier. 
+Cross-domain Algorithm Selection\cite{misir2022cross}  proposes a solution by pre-defining 39 problem-independent features\cite{misir2012intelligent}\cite{misir2015oscar}. This algorithm applies ALORS as the algorithm selection system with a simple random improving moving acceptance strategy. More specifically, the features are generated by randomly picking a heuristic and testing for 10 seconds at each iteration, which will be accepted if it improves the performance and vice versa. The algorithm is tested on the extended version of the HyFlex framework, containing nine problem domains and 98 instances in total. It achieves the best average performance compared to single hyper-heuristics algorithms, proving its effectiveness.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experimental Setup}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In configuring the benchmark settings, this study expands upon the existing HyFlex framework. Initially designed for a competition, the framework includes only approximately ten instances each for six problem domains. Recognizing the need for a more robust evaluation, increasing the instances for each problem domain is necessary. Therefore, this paper incorporates more instances, as shown in Table\ref{instances}. 
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|*{3}{>{\centering\arraybackslash}p{\dimexpr.18\linewidth-2\tabcolsep}|}
+     >{\centering\arraybackslash}p{\dimexpr.46\linewidth-2\tabcolsep}|}
+        \hline
+        Problem & Original & Expanded & Source \\
+        \hline
+        TSP & 10 & 40 & Tsplib\cite{reinelt1995tsplib95} \\
+        \hline
+        VRP& 10 & 80 & Solomon\cite{solomon1987algorithms}, Homberger\cite{homberger1999two} \\
+        \hline
+        Flowshop & 12 & 120 & Nawaz\cite{nawaz1983heuristic} \\
+        \hline
+        NRP & 12 & 47 & Schedulingbenchmarks\cite{schedulingbenchmarks} \\
+        \hline
+        BP & 12 & 170 & BPPLIB\cite{delorme2018bpplib} \\
+        \hline
+        SAT & 12 & 50 & SATlib\cite{hoos2000satlib} \\
+        \hline
+
+    \end{tabular}
+    \caption{Description of the expanded benchmark.}
+    \label{instances}
+\end{table}
+After expanding the benchmark, all the hyper-heuristics methods in the CHeSC competition are tested for each instance under a ten-minute time budget.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Computational Analysis}
+\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\label{sec:conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+%\begin{acknowledgements}
+%If you'd like to thank anyone, place your comments here
+%and remove the percent signs.
+%\end{acknowledgements}
+
+
+
+
+%%%\bibliographystyle{splncs}
+%%%\bibliographystyle{IEEEtran}   
+
+\bibliography{refs}        
+\bibliographystyle{unsrt} 
+
+  
+
+
+\end{document}
+
+
+
+
+
