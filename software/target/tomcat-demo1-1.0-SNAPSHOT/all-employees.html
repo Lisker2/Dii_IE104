@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Personel Scheduling Helper</title>
+        <meta name="description" content="Hospital Management Responsive  HTML5 Template " />
+        <meta name="keywords" content="business,corporate, creative, woocommerach, design, gallery, minimal, modern, landing page, cv, designer, freelancer, html, one page, personal, portfolio, programmer, responsive, vcard, one page" />
+        <meta name="author" content="Hospital Management" />
+
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon" href="images/new/code1.png">
+        <link rel="shortcut icon" href="assets/images/new/code1.png" type="image/x-icon">
+        <!-- fonts file -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <!-- css file  -->
+        <link rel="stylesheet" href="assets/css/plugins.css">
+        <link rel="stylesheet" href="assets/css/flaticon.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="assets/js/modernizr-3.11.2.min.js"></script>
+    </head>
+
+    <body>
+        <!-- pre-loder-area area start here  -->
+        <div class="preloader">
+            <span class="loader">
+                <span class="loader-inner"></span>
+            </span>
+        </div>
+        <!-- pre-loder-area area start here  -->
+        <div class="main-wrapper">
+            <div class="main-sidebar ">
+                <div class="sidebar-wrap scrollbar-inner">
+                    <div class="brand-area">
+                        <a href="main.jsp"><img src="assets/images/Personel.png" alt="Personel" /></a>
+                    </div>
+                    <nav class="menu-area ">
+                        <ul id="metismenu">
+                            <li>
+                                <a href="main.jsp"><i class="flaticon-home"></i> Dashboard</a>
+                            </li>
+                            <li class="">
+                                <a class="has-arrow" href="#" ><i class="flaticon-patient"></i> Shift</a>
+                                <ul>
+                                    <li><a href="shift-types.html">Shift Types</a></li>
+                                    <li><a href="contract-profile.html">Contract Profile</a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="has-arrow" href="#"><i class="flaticon-doctor"></i> Employee</a>
+                                <ul>
+                                    <li class="current-menu-item"><a href="all-employees.html">All Employees</a></li>
+
+
+                                    <li><a href="appointment.jsp">Appointment</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="load.html"><i class="flaticon-scissors"></i> Load File </a>
+                            </li>
+                            <li>
+                                <a href="history.html"><i class="flaticon-medical"></i> History </a>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="main-content-wraper">
+                <header class="header-area d-none d-lg-block">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="header-left">
+                                <div class="search-form">
+                                    <form action="#">
+                                        <div class="form-group mb-0">
+                                          <input type="text" class="form-control" id="search" placeholder="  " />
+                                          <button type="submit" class="search-btn"><span class="flaticon-loupe"></span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="header-right d-flex align-items-center justify-content-end">
+                                <li><a class="Patient-btn" href="/load.html">+ Load File</a></li>
+                                <li class="notification"><a href="#"><span class="flaticon-bell"></span></a></li>
+                                <li class="user-area"><a href="select.html"><img src="assets/images/new/code3.png" alt="user-image" /></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                <div class="mobile-header d-block d-lg-none">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <div class="toggle-bar">
+                                    <a class="menu-bar" href="#"><span class="flaticon-menu"></span></a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="page-title text-center">
+                                    <h2 class="title">Welcome</h2>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="user-area text-right">
+                                    <a class="user-image" href="select.html">
+                                        <img src="assets/images/new/code3.png" alt="user" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mobile-search-form">
+                                    <form action="#">
+                                        <div class="form-group mb-0">
+                                          <input type="text" class="form-control" id="mobile-search" placeholder="  " />
+                                          <button type="submit" class="search-btn"><span class="flaticon-loupe"></span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-wrape">
+                    <div class="patient-list-area">
+                        <div class="container-fluid">
+                            <div class="section-header">
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <div class="section-title">
+                                            <h2 class="title">All Employees</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <a href="#" class="filter-btn"><i class="flaticon-filter"></i> Filter </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="patient-list">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless" id="data-table">
+                                        <thead>
+                                            <tr>
+                                              <th scope="col"><input type="checkbox" /> Employee ID</th>
+                                              <th scope="col">Contract ID</th>
+                                              <th scope="col">EmploymentStartDate</th>
+                                            </tr>
+                                          </thead>
+
+                                        <tbody id="tableBody">
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            jQuery(document).ready(function() {
+                // Fetch data from the servlet
+                jQuery.get("/allEmployeesServlet", function(data) {
+                    // Update the table rows with fetched data
+                    var tableBody = jQuery("#data-table tbody");
+
+                    jQuery.each(data, function(id, rowData) {
+                        var rowHtml = `
+                    <tr>
+                        <td><input type="checkbox" /> ${rowData['Name']}</td>
+                        <td>${rowData['ContractID']}</td>
+                        <td>${rowData['EmploymentStartDate']}</td>
+                    </tr>
+                `;
+
+                        tableBody.append(rowHtml);
+                    });
+                });
+            });
+        </script>
+
+
+        <div class="body-overlay"></div>
+
+        <script src="assets/js/jquery-1.11.2.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/main.js"></script>
+        
+    </body>
+</html>

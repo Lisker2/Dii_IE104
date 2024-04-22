@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+        <package name="org.example.obj"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+
+                <!--<property name="url" value="jdbc:mysql://101.43.141.188:32178/dii?useSSL=false&amp;useServerPrepStmts=true"/>-->
+
+                <!--
+                <property name="url" value="jdbc:mysql://10.109.153.144:3306/dii?useSSL=false&amp;useServerPrepStmts=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="021108Lis"/>
+                -->
+
+
+                <property name="url" value="jdbc:mysql://106.15.233.200:3306/dii?useSSL=false&amp;useServerPrepStmts=true"/>
+                <property name="username" value="root"/>
+                <property name="password" value="9a0eafce1b5871b8"/>
+
+                <!--
+                <property name="url" value="jdbc:mysql://43.143.180.76:3306/text1?useSSL=false&amp;useServerPrepStmts=true"/>
+                <property name="username" value="text1"/>
+                <property name="password" value="zEGWtK5GFS5C5nSG"/>
+                -->
+
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <package name="org.example.mapper"/>
+    </mappers>
+</configuration>

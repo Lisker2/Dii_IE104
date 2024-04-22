@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.3.1/styles/default.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.3.1/lib/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+<h1>ChatGPT Demo</h1>
+<div id="chatbox">
+    <div id="chat"></div>
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+    async function sendMessage() {
+        var userInput = document.getElementById("userInput").value;
+        var chatDiv = document.getElementById("chat");
+
+        // Display user message in the chatbox
+        chatDiv.innerHTML += "<p>User: " + userInput + "</p>";
+
+        // Make an asynchronous request to the backend to get ChatGPT response
+        try {
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer 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"
+                },
+                body: JSON.stringify({ userInput: userInput }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok.");
+            }
+
+            const chatGptResponse = await response.text();
+
+            // Render and display ChatGPT response in the chatbox as markdown
+            chatDiv.innerHTML += "<p>ChatGPT: <span id='chatGptResponse'>" + chatGptResponse + "</span></p>";
+
+            // Use MathJax to render LaTeX after the content has been added to the DOM
+            MathJax.typeset(['chatGptResponse']);
+        } catch (error) {
+            console.error("Error fetching ChatGPT response:", error);
+        }
+
+        // Clear the input field
+        document.getElementById("userInput").value = "";
+    }
+</script>
+</body>
+</html>

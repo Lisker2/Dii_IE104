@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Register to Optimization Problems Solving Helper</title>
+        <meta name="description" content="Hospital Management Responsive  HTML5 Template " />
+        <meta name="keywords" content="business,corporate, creative, woocommerach, design, gallery, minimal, modern, landing page, cv, designer, freelancer, html, one page, personal, portfolio, programmer, responsive, vcard, one page" />
+        <meta name="author" content="Hospital Management" />
+
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="apple-touch-icon" href="assets/images/new/code1.png">
+        <link rel="shortcut icon" href="assets/images/new/code1.png" type="image/x-icon">
+        <!-- fonts file -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <!-- css file  -->
+        <link rel="stylesheet" href="assets/css/plugins.css">
+        <link rel="stylesheet" href="assets/css/flaticon.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="assets/js/modernizr-3.11.2.min.js"></script>
+    </head>
+
+    <body>
+        <div class="main-wrapper">
+            <div class="register-area">
+                <div class="register-area-wrap">
+                    <div class="register-left">
+                        <div class="register-form">
+                            <h3 class="form-title">Register to Optimization Problems Solving Helper</h3>
+                            <form action="/registerServlet" method="post" id="form">
+                                <div class="form-group">
+                                  <label for="email">Email Address</label>
+                                  <input type="email" class="form-control" id="email" name="email" placeholder="johndoe.admin@gmail.com" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">User Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="johndoe" />
+                                </div>
+                                <div class="form-group">
+                                  <label for="password-field">Password</label>
+                                  <input id="password-field" type="password" class="form-control" name="password" value="">
+                                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                </div>
+                                <div class="form-group form-check">
+                                  <input type="checkbox" class="form-check-input" id="agree">
+                                  <label class="form-check-label" for="agree">I agree to the terms and conditions of <a href="#">Privacy Policy .</a></label>
+                                </div>
+                                <button type="submit" class="register-btn-primary">Create Account</button>
+                                <p class="form-bottom-text" >Already have an account? <a href="index.html">Log in</a></p>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="register-right">
+                        <div class="register-image">
+                            <img src="assets/images/sign-up.png" alt="sing up " />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const form = document.getElementById("form");
+
+                form.addEventListener("submit", function (event) {
+                    const email = document.getElementById("email").value;
+                    const password = document.getElementById("password-field").value;
+                    const agreeCheckbox = document.getElementById("agree");
+
+                    // Regular expression for password validation
+                    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+                    // Check if fields are empty or unchecked
+                    if (email.trim() === "" || password.trim() === "" || !agreeCheckbox.checked) {
+                        event.preventDefault();
+                        alert("Please fill in all fields and agree to the terms.");
+                    } else if (!password.match(passwordPattern)) {
+                        event.preventDefault();
+                        alert("Password must contain at least 8 characters, including at least one digit, one lowercase letter, and one uppercase letter.");
+                    }
+                });
+
+                // Toggle password visibility
+                const togglePassword = document.querySelector(".toggle-password");
+                const passwordField = document.querySelector("#password-field");
+
+                togglePassword.addEventListener("click", function () {
+                    const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+                    passwordField.setAttribute("type", type);
+                    togglePassword.classList.toggle("fa-eye");
+                    togglePassword.classList.toggle("fa-eye-slash");
+                });
+            });
+        </script>
+        
+
+        <script src="assets/js/jquery-1.11.2.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
